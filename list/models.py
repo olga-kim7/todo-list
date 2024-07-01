@@ -1,4 +1,3 @@
-
 from django.db import models
 from django.utils import timezone
 
@@ -18,5 +17,4 @@ class Task(models.Model):
     tags = models.ManyToManyField(Tag, blank=True, related_name='tasks')
 
     class Meta:
-        ordering = ['is_done', '-created_at']
-
+        ordering = ["is_done", "-created_at"]

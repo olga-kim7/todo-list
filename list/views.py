@@ -38,7 +38,7 @@ class TaskListView(generic.ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
-        context['CompleteForm'] = CompleteForm()
+        context["CompleteForm"] = CompleteForm()
         return context
 
 
