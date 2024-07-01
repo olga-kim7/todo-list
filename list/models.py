@@ -1,4 +1,6 @@
+
 from django.db import models
+from django.utils import timezone
 
 
 class Tag(models.Model):
@@ -10,10 +12,11 @@ class Tag(models.Model):
 
 class Task(models.Model):
     content = models.TextField()
-    datetime = models.DateTimeField(auto_now_add=True)
-    optional_dead_date = models.DateTimeField(null=True, blank=True)
-    boolean_field = models.BooleanField(default=False)
-    tags = models.ManyToManyField(Tag, blank=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    deadline = models.DateTimeField(null=True, blank=True)
+    is_done = models.BooleanField(default=False)
+    tags = models.ManyToManyField(Tag, blank=True, related_name='tasks')
 
-    def __str__(self):
-        return self.content
+    class Meta:
+        ordering = ['is_done', '-created_at']
+
